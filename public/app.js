@@ -1,7 +1,6 @@
 import { subtleColors } from './constants.js';
 
 function changeBackgroundColor() {
-    // Pick a random color from the subtleColors array
     const randomColor = subtleColors[Math.floor(Math.random() * subtleColors.length)];
     document.body.style.backgroundColor = randomColor.color;
 }
@@ -11,7 +10,6 @@ function showNews(data) {
     newsContainer.innerHTML = ''; // Clear existing news
 
     if (!data || data.length === 0) {
-        // Show a message if no news articles are found
         const noNewsMessage = document.createElement('p');
         noNewsMessage.innerText = 'No news articles found. Please try another search.';
         newsContainer.appendChild(noNewsMessage);
@@ -19,20 +17,20 @@ function showNews(data) {
     }
 
     data.forEach((newsItem) => {
-        if (!newsItem.urlToImage) return; // Skip if no image
+        if (!newsItem.image) return; // Skip if no image
 
         const newsCard = document.createElement('div');
         newsCard.classList.add('card');
 
         const image = document.createElement('img');
-        image.src = newsItem.urlToImage;
+        image.src = newsItem.image;
         image.alt = newsItem.title;
 
         const title = document.createElement('h2');
         title.innerText = newsItem.title;
 
         const author = document.createElement('p');
-        author.innerText = `By: ${newsItem.author || 'Unknown Author'}`;
+        author.innerText = `By: ${newsItem.source.name || 'Unknown Author'}`;
 
         const published = document.createElement('p');
         const date = new Date(newsItem.publishedAt);
@@ -50,11 +48,11 @@ function showNews(data) {
 function loadNews() {
     const language = document.getElementById('language-filter').value;
     const sortBy = document.getElementById('sort-filter').value;
-    const searchInput = document.querySelector('.search input').value || "latest"; // Default to "latest" if no query is provided
+    const searchInput = document.querySelector('.search input').value || "latest"; 
     const fromDate = document.getElementById('from-date').value;
     const toDate = document.getElementById('to-date').value;
 
-    let apiUrl = `https://newsapi.org/v2/everything?q=${searchInput}&sortBy=${sortBy}&language=${language}&apiKey=4f5e94183c6048708ae906964a3a8fa8`;
+    let apiUrl = `https://gnews.io/api/v4/search?q=${searchInput}&lang=${language}&sortby=${sortBy}&token=796ab89a10e0aabd7d23f9c65a3e7ae7`;
 
     if (fromDate) apiUrl += `&from=${fromDate}`;
     if (toDate) apiUrl += `&to=${toDate}`;
@@ -103,7 +101,7 @@ window.onload = function() {
     loadNews();
 };
 
-// Event listeners for filters
+
 document.getElementById('language-filter').addEventListener('change', loadNews);
 document.getElementById('sort-filter').addEventListener('change', loadNews);
 document.getElementById('from-date').addEventListener('change', loadNews);
