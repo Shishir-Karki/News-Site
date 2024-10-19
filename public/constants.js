@@ -142,7 +142,7 @@ export const subtleColors = [
  * @property {string} code - The ISO 3166-1 alpha-2 country code.
  * @property {string} country - The name of the country.
  */
-export const countries = [
+export const language = [
   {
     code: "AF",
     country: "Afghanistan",
@@ -1882,3 +1882,98 @@ const languages = [
     language: "Zulu",
   },
 ];
+
+
+export const countries = 
+  [
+    {
+      code: "ar",
+      language: "Arabic"
+    },
+    {
+      code: "zh",
+      language: "Chinese"
+    },
+    {
+      code: "nl",
+      language: "Dutch"
+    },
+    {
+      code: "en",
+      language: "English"
+    },
+    {
+      code: "fr",
+      language: "French"
+    },
+    {
+      code: "de",
+      language: "German"
+    },
+    {
+      code: "el",
+      language: "Greek"
+    },
+    {
+      code: "he",
+      language: "Hebrew"
+    },
+    {
+      code: "hi",
+      language: "Hindi"
+    },
+    {
+      code: "it",
+      language: "Italian"
+    },
+    {
+      code: "ja",
+      language: "Japanese"
+    },
+    {
+      code: "ml",
+      language: "Malayalam"
+    },
+    {
+      code: "mr",
+      language: "Marathi"
+    },
+    {
+      code: "no",
+      language: "Norwegian"
+    },
+    {
+      code: "pt",
+      language: "Portuguese"
+    },
+    {
+      code: "ro",
+      language: "Romanian"
+    },
+    {
+      code: "ru",
+      language: "Russian"
+    },
+    {
+      code: "es",
+      language: "Spanish"
+    },
+    {
+      code: "sv",
+      language: "Swedish"
+    },
+    {
+      code: "ta",
+      language: "Tamil"
+    },
+    {
+      code: "te",
+      language: "Telugu"
+    },
+    {
+      code: "uk",
+      language: "Ukrainian"
+    }
+    
+  ]
+  

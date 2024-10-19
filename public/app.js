@@ -1,15 +1,29 @@
 import { subtleColors } from './constants.js';
+import { countries } from './constants.js';
 
 function changeBackgroundColor() {
     const randomColor = subtleColors[Math.floor(Math.random() * subtleColors.length)];
     document.body.style.backgroundColor = randomColor.color;
 }
 
+function populateLanguage(){
+    const languageFilter = document.getElementById('language-filter');
+    languageFilter.innerHTML = '';
+
+    countries.forEach(country=>{
+        const option = document.createElement('option')
+        option.value = country.code.toLowerCase();
+        option.textContent = `${country.language}`;
+        languageFilter.appendChild(option);
+
+    })
+}
+
 function showNews(data) {
     const newsContainer = document.querySelector('.news-container');
-    newsContainer.innerHTML = ''; // Clear existing news
+    newsContainer.innerHTML = ''; 
 
-    if (!data || data.length === 0) {
+    if (!data|| data.length === 0) {
         const noNewsMessage = document.createElement('p');
         noNewsMessage.innerText = 'No news articles found. Please try another search.';
         newsContainer.appendChild(noNewsMessage);
@@ -17,7 +31,7 @@ function showNews(data) {
     }
 
     data.forEach((newsItem) => {
-        if (!newsItem.image) return; // Skip if no image
+        if (!newsItem.image) return; 
 
         const newsCard = document.createElement('div');
         newsCard.classList.add('card');
@@ -31,6 +45,9 @@ function showNews(data) {
 
         const author = document.createElement('p');
         author.innerText = `By: ${newsItem.source.name || 'Unknown Author'}`;
+
+        const desc = document.createElement('p');
+        author.innerText = newsItem.description;
 
         const published = document.createElement('p');
         const date = new Date(newsItem.publishedAt);
@@ -98,6 +115,7 @@ function setupSearch(articles) {
 
 window.onload = function() {
     changeBackgroundColor();
+    populateLanguage();
     loadNews();
 };
 
